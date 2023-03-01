@@ -10,8 +10,8 @@ export interface IClass {
   course: ICourse
   professor: string
   days: string
-  time: number
+  time: string
   seatsAvailable: number
-  enrolled: boolean
-  processing: boolean
+  enrolled?: boolean
+  processing?: boolean
 }

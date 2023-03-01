@@ -3,7 +3,7 @@ import { Observable, Subject, EMPTY, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 import { IUser } from '../services/user.model';
-import { IClass } from '../services/class.model';
+import { IClass, ICourse } from '../services/class.model';
 
 @Injectable()
 export class DataRepositoryService {
@@ -73,7 +73,7 @@ export class DataRepositoryService {
   }
 }
 
-const COURSES = [{
+const COURSES: ICourse[] = [{
   courseNumber: 'PO101',
   courseName: 'Intro to Potions',
   creditHours: 3,
@@ -105,7 +105,7 @@ const COURSES = [{
   description: '...'
 }];
 
-const COURSE_CATALOG = [{
+const COURSE_CATALOG: IClass[] = [{
   classId: '24ab7b14-f935-44c1-b91b-8598123ea54a',
   course: COURSES[0],
   professor: 'Abramius Darksbayn',
