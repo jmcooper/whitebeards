@@ -4,19 +4,19 @@ import { map, delay } from 'rxjs/operators';
 
 @Injectable()
 export class DataRepositoryService {
-  currentUser:any;
+  currentUser: any;
 
-  constructor() {}
+  constructor() { }
 
-  getCatalog():Observable<any[]> {
+  getCatalog(): Observable<any[]> {
     const subject = new Subject<any>();
-    const currentUser = this.currentUser || {classes:[]};
+    const currentUser = this.currentUser || { classes: [] };
     const catalogWithEnrollmentStatus =
       COURSE_CATALOG.map(catalogClass => {
-        let enrolled = {enrolled: currentUser.classes.includes(catalogClass.classId)};
+        let enrolled = { enrolled: currentUser.classes.includes(catalogClass.classId) };
         return Object.assign(catalogClass, enrolled);
       });
-    setTimeout(() => {subject.next(catalogWithEnrollmentStatus); subject.complete();}, 200);
+    setTimeout(() => { subject.next(catalogWithEnrollmentStatus); subject.complete(); }, 200);
 
     return subject;
   }
@@ -63,7 +63,7 @@ export class DataRepositoryService {
       firstName: 'Jim',
       lastName: 'Cooper',
       email: 'me@whitebeards.edu',
-      classes: ['24ab7b14-f935-44c1-b91b-8598123ea54a']
+      classes: []
     };
 
     return EMPTY;
@@ -80,22 +80,22 @@ const COURSES = [{
   courseName: 'Ancient History of Magic',
   creditHours: 4,
   description: '...'
-},{
+}, {
   courseNumber: 'CH101',
   courseName: 'Intro to Charms',
-  creditHours: 4,
+  creditHours: 2,
   description: '...'
-},{
+}, {
   courseNumber: 'CH205',
   courseName: 'Creating Advanced Charms',
   creditHours: 4,
   description: '...'
-},{
+}, {
   courseNumber: 'SP101',
   courseName: 'Intro Spell Casting',
-  creditHours: 4,
+  creditHours: 3,
   description: '...'
-},{
+}, {
   courseNumber: 'SP201',
   courseName: 'Advanced Spell Casting',
   creditHours: 4,
@@ -108,92 +108,82 @@ const COURSE_CATALOG = [{
   professor: 'Abramius Darksbayn',
   seatsAvailable: 23,
   days: 'MWF',
-  time: 11
+  time: '11:00 AM'
 }, {
   classId: 'cebbc5ba-f49a-4708-b3dc-51a346b3231e',
   course: COURSES[0],
   professor: 'Philosifus Siebrand',
   seatsAvailable: 9,
   days: 'MWF',
-  time: 12
+  time: '12:00 PM'
 }, {
   classId: '6130cdd4-071a-4559-8072-35f0fbec5516',
   course: COURSES[0],
   professor: 'Abramius Darksbayn',
   seatsAvailable: 14,
   days: 'THF',
-  time: 2
+  time: '2:00 PM'
 }, {
   classId: 'dd0343e9-50b2-4f1d-8b87-93c0b34f3d35',
   course: COURSES[1],
   professor: 'Antonia Clavell',
   seatsAvailable: 28,
   days: 'THF',
-  time: 11
-},{
+  time: '11:00 AM'
+}, {
   classId: '7277956e-795f-4c0f-9861-cf03635df5ea',
   course: COURSES[2],
   professor: 'Meriel Dufaux',
   seatsAvailable: 28,
-  days: 'THF',
-  time: 11
-},{
-  classId: '7277956e-795f-4c0f-9861-cf03635df5ea',
+  days: 'MW',
+  time: '10:00 AM'
+}, {
+  classId: '76d31fdc-e398-4d17-872b-e8222407e755',
   course: COURSES[3],
   professor: 'Adranus Klaus',
   seatsAvailable: 28,
   days: 'THF',
-  time: 11
-},{
-  classId: '7277956e-795f-4c0f-9861-cf03635df5ea',
+  time: '1:00 PM'
+}, {
+  classId: 'd8bf81f4-3945-4a55-b5c4-663012246873',
   course: COURSES[4],
   professor: 'Ragnvald Graupnar',
   seatsAvailable: 28,
-  days: 'THF',
-  time: 11
-},{
-  classId: '7277956e-795f-4c0f-9861-cf03635df5ea',
+  days: 'MWF',
+  time: '12:00 PM'
+}, {
+  classId: 'c34b20fd-d2a0-4fb6-aeaa-2fc3a52e2e89',
   course: COURSES[5],
   professor: 'Philosifus Siebrand',
   seatsAvailable: 28,
   days: 'THF',
-  time: 11
-},{
-  classId: '7277956e-795f-4c0f-9861-cf03635df5ea',
+  time: '11:00 AM'
+}, {
+  classId: 'c5e73546-5f3c-4de1-8819-fe5bd3b6ef7e',
   course: COURSES[2],
   professor: 'Phoebe Chabon',
   seatsAvailable: 28,
-  days: 'THF',
-  time: 11
-},{
-  classId: '7277956e-795f-4c0f-9861-cf03635df5ea',
+  days: 'WF',
+  time: '2:00 PM'
+}, {
+  classId: 'fcf0652f-58c0-4eeb-b040-3eddb29e49e3',
   course: COURSES[3],
   professor: 'Sycily Soule',
   seatsAvailable: 28,
   days: 'THF',
-  time: 11
-},{
-  classId: '7277956e-795f-4c0f-9861-cf03635df5ea',
+  time: '1:00 PM'
+}, {
+  classId: 'bb0a6a48-062e-4927-8257-28eb5842c0a6',
   course: COURSES[4],
   professor: 'Heldebald Cincebeaux',
   seatsAvailable: 28,
-  days: 'THF',
-  time: 11
+  days: 'MTW',
+  time: '10:00 AM'
 }, {
-  classId: '7277956e-795f-4c0f-9861-cf03635df5ea',
+  classId: '996901ca-614e-4b92-887e-12528c88b880',
   course: COURSES[5],
   professor: 'Gerlinda Weinschroot',
   seatsAvailable: 28,
   days: 'THF',
-  time: 11
-}];
-
-
-const USERS = [{
-  userId: 'e61aebed-dbc5-437a-b514-02b8380d8efc',
-  firstName: 'Jim',
-  lastName: 'Cooper',
-  email: 'someones-email@gmail.com',
-  password: 'supersecret',
-  classes: ['24ab7b14-f935-44c1-b91b-8598123ea54a']
+  time: '11:00 AM'
 }];

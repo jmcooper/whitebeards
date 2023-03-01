@@ -8,20 +8,22 @@ import { DataRepositoryService } from '../services/data-repository'
   styles: [`
     form {
       color: #336699;
-      font-size:18px;
+      font-size:24px;
       padding:30px;
-      width: 298px;
+      width: 310px;
       margin: 0 auto;
     }
     input {
       display: block;
-      font-size:18px;
-      padding-left:10px;
+      font-size: 24px;
+      padding:10px;
       width: 275px;
     }
     button {
-      font-size: 24px;
+      font-size: 26px;
+      padding: 8px;
       color: #556b8e;
+      margin-left: 10px;
     }
     button:disabled {
       color: #999999;
@@ -73,15 +75,15 @@ import { DataRepositoryService } from '../services/data-repository'
   `
 })
 export class SignInComponent {
-  credentials:any = {};
+  credentials: any = {};
 
-  constructor(private router:Router, private dataRepository:DataRepositoryService) { }
+  constructor(private router: Router, private dataRepository: DataRepositoryService) { }
 
-  signIn(credentials:any) {
+  signIn(credentials: any) {
     this.dataRepository.signIn(credentials)
       .subscribe(
         null,
-        (err) => {console.error(err, 'Error')},
+        (err) => { console.error(err, 'Error') },
         () => this.router.navigate(['/catalog'])
       )
   }
@@ -102,9 +104,9 @@ export class RegisterComponent {
   lastName: FormControl;
   email: FormControl;
   password: FormControl;
-  saving:boolean=false;
+  saving: boolean = false;
 
-  constructor(private router:Router, private dataRepository:DataRepositoryService) { }
+  constructor(private router: Router, private dataRepository: DataRepositoryService) { }
 
   ngOnInit() {
     this.firstName = new FormControl('', Validators.required);
@@ -121,11 +123,11 @@ export class RegisterComponent {
   }
 
   registerUser(user) {
-    this.saving=true;
+    this.saving = true;
     this.dataRepository.saveUser(user)
       .subscribe(
         null,
-        ()=>this.saving=false,
+        () => this.saving = false,
         () => this.router.navigate(['/catalog']));
   }
 

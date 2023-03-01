@@ -1,14 +1,25 @@
 .logo {
-  height:50px;
-  margin:5px;
+  height: 50px;
+  margin: 5px;
 }
+
 .nav-bar {
-  display:flex;
+  display: flex;
   align-items: center;
   background-color: #556b8e;
   color: #d3f0fb;
-  font-size:30px;
+  font-size: 30px;
+  padding: 5px;
 }
+
 .nav-item {
   padding-left: 40px;
+}
+
+a {
+  color: #D3F0FB;
+}
+
+a:hover {
+  color: #fff;
 }

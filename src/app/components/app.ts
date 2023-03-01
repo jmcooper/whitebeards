@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   styles: [`
       .app {
-        width: 1000px;
+        width: 1600px;
         margin: auto;
       }
       .main {

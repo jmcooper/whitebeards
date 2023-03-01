@@ -2,37 +2,46 @@
   display: flex;
   justify-content: space-around;
 }
+
 .departments button {
-  width: 130px;
+  width: 180px;
   height: 65px;
-  font-size: 18px;
+  font-size: 24px;
   background-color: #556b8e;
-  color: #CCDDFF;
+  color: #d3f0fb;
   margin: 20px 0;
 }
-.sign-in {
-  font-size:16px;
+
+button {
+  font-size: 22px;
+  padding: 5px 10px;
 }
+
 table {
   width: 98%;
   margin: 10px 10px 30px;
   padding-bottom: 30px;
 }
+
 th {
   background-color: #336699;
-  padding:3px;
+  padding: 5px;
   color: #CCDDFF;
-  text-align:left;
+  text-align: left;
 }
+
+td {
+  padding: 5px;
+}
+
 tr:nth-child(even) {
   background-color: #CCDDFF;
 }
+
 .center {
-  text-align:center;
+  text-align: center;
 }
-.enroll {
-  background-color: white;
-}
-button {
-  font-size:18px;
+
+.sign-in {
+  color: #666;
 }

@@ -7,14 +7,14 @@ import { DataRepositoryService } from "../services/data-repository"
   templateUrl: '../templates/catalog.html'
 })
 export class CoursesComponent {
-  classes:any[];
-  visibleClasses:any[];
+  classes: any[];
+  visibleClasses: any[];
 
-  constructor(public dataRepository:DataRepositoryService) {}
+  constructor(public dataRepository: DataRepositoryService) { }
 
   ngOnInit() {
     this.dataRepository.getCatalog()
-      .subscribe(classes => { this.classes = classes; this.applyFilter('')});
+      .subscribe(classes => { this.classes = classes; this.applyFilter('') });
   }
 
   enroll(classToEnroll) {
@@ -22,8 +22,8 @@ export class CoursesComponent {
     this.dataRepository.enroll(classToEnroll.classId)
       .subscribe(
         null,
-        (err) => {console.error(err); classToEnroll.processing = false}, //add a toast message or something
-        () => {classToEnroll.processing = false; classToEnroll.enrolled=true;},
+        (err) => { console.error(err); classToEnroll.processing = false }, //add a toast message or something
+        () => { classToEnroll.processing = false; classToEnroll.enrolled = true; },
       );
   }
 
@@ -32,8 +32,8 @@ export class CoursesComponent {
     this.dataRepository.drop(classToDrop.classId)
       .subscribe(
         null,
-        (err) => { console.error(err); classToDrop.processing = false}, //add a toast message or something
-        () => {classToDrop.processing = false; classToDrop.enrolled=false;}
+        (err) => { console.error(err); classToDrop.processing = false }, //add a toast message or something
+        () => { classToDrop.processing = false; classToDrop.enrolled = false; }
       );
   }
 

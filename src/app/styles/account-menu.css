@@ -1,30 +1,43 @@
 :host {
-  font-size: 20px;
+  font-size: 28px;
   flex-grow: 1;
   text-align: right;
   padding-right: 30px;
 }
+
 .account span {
-  padding-left: 20px;
+  padding-left: 40px;
 }
+
 .account .chevron {
   position: relative;
-  top: -3px;
+  top: -10px;
   font-size: 22px;
   padding-left: 5px;
 }
+
 .welcome {
-  position:relative;
+  position: relative;
   cursor: pointer;
+  vertical-align: middle;
 }
+
 .menu {
   position: absolute;
   background-color: white;
   padding: 8px;
   color: #556b8e;
   top: 28px;
-  right:5px;
+  right: 5px;
   font-size: 20px;
   border: 1px solid #CCDDFF;
   cursor: pointer;
+}
+
+a {
+  color: #D3F0FB;
+}
+
+a:hover {
+  color: #fff;
 }

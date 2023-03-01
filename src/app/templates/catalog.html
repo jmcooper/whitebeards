@@ -11,8 +11,8 @@
       <th>Course #</th>
       <th>Course Name</th>
       <th>Professor</th>
-      <th>Days</th>
-      <th>Time</th>
+      <th class="center">Days</th>
+      <th class="center">Time</th>
       <th class="center">Credits</th>
       <th class="center">Enroll/Drop</th>
     </thead>
@@ -21,13 +21,15 @@
         <td><a [routerLink]="['/catalog/' + class.course.courseNumber]">{{class.course.courseNumber}}</a></td>
         <td><a [routerLink]="['/catalog/' + class.course.courseNumber]">{{class.course.courseName}}</a></td>
         <td>{{class.professor}}</td>
-        <td>{{class.days}}</td>
-        <td>{{class.time}}</td>
+        <td class="center">{{class.days}}</td>
+        <td class="center">{{class.time}}</td>
         <td class="center">{{class.course.creditHours}}</td>
         <td class="enroll center">
-          <button class="sign-in" *ngIf="!dataRepository.currentUser" disabled>Sign In to Enroll</button>
-          <button *ngIf="dataRepository.currentUser && !class.enrolled && !class.processing" (click)="enroll(class)">Enroll</button>
-          <button *ngIf="dataRepository.currentUser && class.enrolled && !class.processing" (click)="drop(class)">Drop</button>
+          <span class="sign-in" *ngIf="!dataRepository.currentUser" disabled>Sign In to Enroll</span>
+          <button *ngIf="dataRepository.currentUser && !class.enrolled && !class.processing"
+            (click)="enroll(class)">Enroll</button>
+          <button *ngIf="dataRepository.currentUser && class.enrolled && !class.processing"
+            (click)="drop(class)">Drop</button>
           <loading-spinner [loading]="class.processing"></loading-spinner>
         </td>
       </tr>
