@@ -15,7 +15,7 @@ export class CoursesComponent {
 
   ngOnInit() {
     this.dataRepository.getCatalog()
-      .subscribe(classes => { this.classes = classes; this.applyFilter('') });
+      .subscribe((classes: IClass[]) => { this.classes = classes; this.applyFilter('') });
   }
 
   enroll(classToEnroll: IClass) {
@@ -37,16 +37,18 @@ export class CoursesComponent {
   }
 
   applyFilter(filter: string) {
-    if (!filter)
-      return this.visibleClasses = this.classes;
+    if (!filter) {
+      this.visibleClasses = this.classes;
+      return;
+    }
 
     if (filter === 'GEN') {
-      return this.visibleClasses = this.classes.filter(c =>
+      this.visibleClasses = this.classes.filter(c =>
         !c.course.courseNumber.startsWith('CH') &&
         !c.course.courseNumber.startsWith('PO') &&
         !c.course.courseNumber.startsWith('SP'));
+    } else {
+      this.visibleClasses = this.classes.filter(c => c.course.courseNumber.startsWith(filter));
     }
-
-    return this.visibleClasses = this.classes.filter(c => c.course.courseNumber.startsWith(filter));
   }
 }
