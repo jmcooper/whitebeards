@@ -7,24 +7,23 @@ import { IClass, ICourse } from '../services/class.model';
 
 @Injectable()
 export class DataRepositoryService {
-  currentUser: any;
+  currentUser: IUser;
 
   constructor() { }
 
-  getCatalog(): Observable<any[]> {
-    const subject = new Subject<any>();
+  getCatalog(): Observable<IClass[]> {
+    const subject = new Subject<IClass[]>();
     const currentUser = this.currentUser || { classes: [] };
-    const catalogWithEnrollmentStatus =
+    const catalogWithEnrollmentStatus: IClass[] =
       COURSE_CATALOG.map(catalogClass => {
-        let enrolled = { enrolled: currentUser.classes.includes(catalogClass.classId) };
-        return Object.assign(catalogClass, enrolled);
+        return { ...catalogClass, enrolled: currentUser.classes.includes(catalogClass.classId) };
       });
     setTimeout(() => { subject.next(catalogWithEnrollmentStatus); subject.complete(); }, 200);
 
     return subject;
   }
 
-  saveUser(user: IUser): Observable<any> {
+  saveUser(user: IUser): Observable<IUser> {
     user.classes = user.classes || [];
     this.currentUser = user;
 

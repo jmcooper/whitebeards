@@ -3,6 +3,6 @@ export interface IUser {
   firstName: string
   lastName: string
   email: string
-  password: string | null
+  password?: string | null
   classes: string[]
 }

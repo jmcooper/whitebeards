@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'account-menu',
@@ -18,8 +18,8 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 })
 export class AccountMenuComponent {
   @Input() user;
-  @Output() signedOut:EventEmitter<any> = new EventEmitter<any>();
-  showMenu:boolean;
+  @Output() signedOut: EventEmitter<undefined> = new EventEmitter<undefined>();
+  showMenu: boolean;
 
   signOut() {
     this.showMenu = false;
