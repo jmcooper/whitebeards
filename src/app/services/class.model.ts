@@ -12,6 +12,6 @@ export interface IClass {
   days: string
   time: string
   seatsAvailable: number
-  enrolled?: boolean
-  processing?: boolean
+  processing: boolean
+  enrolled: boolean
 }
