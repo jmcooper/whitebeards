@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 
 import { DataRepositoryService } from "../services/data-repository"
+import { IClass } from '../services/class.model';
 
 @Component({
   styleUrls: ['../styles/catalog.css'],
   templateUrl: '../templates/catalog.html'
 })
 export class CoursesComponent {
-  classes: any[];
-  visibleClasses: any[];
+  classes: IClass[] = [];
+  visibleClasses: IClass[] = [];
 
   constructor(public dataRepository: DataRepositoryService) { }
 
@@ -17,27 +18,25 @@ export class CoursesComponent {
       .subscribe(classes => { this.classes = classes; this.applyFilter('') });
   }
 
-  enroll(classToEnroll) {
+  enroll(classToEnroll: IClass) {
     classToEnroll.processing = true;
     this.dataRepository.enroll(classToEnroll.classId)
-      .subscribe(
-        null,
-        (err) => { console.error(err); classToEnroll.processing = false }, //add a toast message or something
-        () => { classToEnroll.processing = false; classToEnroll.enrolled = true; },
-      );
+      .subscribe({
+        error: (err) => { console.error(err); classToEnroll.processing = false },
+        complete: () => { classToEnroll.processing = false; classToEnroll.enrolled = true; },
+      });
   }
 
-  drop(classToDrop) {
+  drop(classToDrop: IClass) {
     classToDrop.processing = true;
     this.dataRepository.drop(classToDrop.classId)
-      .subscribe(
-        null,
-        (err) => { console.error(err); classToDrop.processing = false }, //add a toast message or something
-        () => { classToDrop.processing = false; classToDrop.enrolled = false; }
-      );
+      .subscribe({
+        error: (err) => { console.error(err); classToDrop.processing = false },
+        complete: () => { classToDrop.processing = false; classToDrop.enrolled = false; }
+      });
   }
 
-  applyFilter(filter) {
+  applyFilter(filter: string) {
     if (!filter)
       return this.visibleClasses = this.classes;
 
