@@ -7,16 +7,16 @@ import { IClass, ICourse } from '../services/class.model';
 
 @Injectable()
 export class DataRepositoryService {
-  currentUser: IUser;
+  currentUser: IUser | null = null;
 
   constructor() { }
 
   getCatalog(): Observable<IClass[]> {
     const subject = new Subject<IClass[]>();
-    const currentUser = this.currentUser || { classes: [] };
+    const classes = this.currentUser?.classes || [];
     const catalogWithEnrollmentStatus: IClass[] =
       COURSE_CATALOG.map(catalogClass => {
-        return { ...catalogClass, enrolled: currentUser.classes.includes(catalogClass.classId) };
+        return { ...catalogClass, enrolled: classes.includes(catalogClass.classId) };
       });
     setTimeout(() => { subject.next(catalogWithEnrollmentStatus); subject.complete(); }, 200);
 
