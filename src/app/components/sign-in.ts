@@ -82,11 +82,10 @@ export class SignInComponent {
 
   signIn(credentials: any) {
     this.dataRepository.signIn(credentials)
-      .subscribe(
-        null,
-        (err) => { console.error(err, 'Error') },
-        () => this.router.navigate(['/catalog'])
-      )
+      .subscribe({
+        error: (err) => { console.error(err, 'Error') },
+        complete: () => this.router.navigate(['/catalog'])
+      })
   }
 
   cancel() {
@@ -125,10 +124,10 @@ export class RegisterComponent {
   registerUser(user: IUser) {
     this.saving = true;
     this.dataRepository.saveUser(user)
-      .subscribe(
-        null,
-        () => this.saving = false,
-        () => this.router.navigate(['/catalog']));
+      .subscribe({
+        error: () => this.saving = false,
+        complete: () => this.router.navigate(['/catalog'])
+      });
   }
 
   cancel() {
