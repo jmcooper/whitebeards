@@ -7,7 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     <div class="account">
       <span class="welcome" *ngIf="user">
         <a (click)="showMenu=!showMenu">
-          Welcome {{user?.firstName}}
+          Welcome {{user.firstName}}
           <span class="chevron">&#8964;</span>
         </a>
         <div class="menu" *ngIf="showMenu" (click)="signOut()">Sign Out</div>
