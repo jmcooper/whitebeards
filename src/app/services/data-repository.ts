@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, EMPTY, throwError } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { Observable, Subject, EMPTY, throwError, timer } from 'rxjs';
+
 
 import { IUser } from '../services/user.model';
 import { IClass, ICourse } from '../services/class.model';
@@ -23,11 +23,11 @@ export class DataRepositoryService {
     return subject;
   }
 
-  saveUser(user: IUser): Observable<IUser> {
+  saveUser(user: IUser): Observable<any> {
     user.classes = user.classes || [];
     this.currentUser = user;
 
-    return EMPTY.pipe(delay(1000));
+    return timer(1000);
   }
 
   enroll(classId: string): Observable<any> {
@@ -39,7 +39,7 @@ export class DataRepositoryService {
 
     this.currentUser.classes.push(classId);
 
-    return EMPTY.pipe(delay(1000));
+    return timer(1000);
   }
 
   drop(classId: string): Observable<any> {
@@ -51,7 +51,7 @@ export class DataRepositoryService {
 
     this.currentUser.classes = this.currentUser.classes.filter((c: string) => c !== classId);
 
-    return EMPTY.pipe(delay(3000));
+    return timer(1000);
   }
 
   signIn(credentials: any): Observable<any> {
